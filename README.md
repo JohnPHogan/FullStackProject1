@@ -56,7 +56,7 @@ TestCase.py
         
 Installation:
 
-The project can be checked out from github.  No further configuration should be needed.  
+The project can be checked out from github.  Once installed, no further configuration should be needed.  
 
 NOTES:
 
