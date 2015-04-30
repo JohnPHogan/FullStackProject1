@@ -1,11 +1,21 @@
+'''
+Class html_initiator
+
+Inherits from class html_base
+Public methods: __init__, header, body, var
+
+This class is the wrapper class to the html_base class and is the class used by html_manager to get the html template data.  By changing the class html_initiator inherits from, you can change the html template contents.
+
+DO NOT ACCESS CLASS VARIABLES DIRECTLY!!  ONLY USE THE DEFINED METHODS TO GUARANTEE THAT ANY INCLUDED ERROR CHECKING OR FORMATTING OCCURS.
+'''
+
+# change the import to change the html template loaded
 from HTMLBase import html_base as hb
 
 class html_initiator(hb):
 
 
     def __init__(self, test_flag = False):
-
-        self.HTML_TYPES = None
 
         try:
 
@@ -19,30 +29,21 @@ class html_initiator(hb):
                 '''
                 hb.__init__(self)
 
-                self.HTML_TYPES = {0: 'header', 1: 'body', 2:'variable'}
 
-            # If assignment fails, throw eception
-            if self.HTML_TYPES == None:
-                raise TypeError('TypeError',
-                                'None',
-                                'html_initiator could not initiate')
         except TypeError as type_error:
             raise TypeError
         except Exception as e:
             raise e
 
-    def get_all(self, test_fail = False):
 
-        if test_fail == True:
-            return None
-
-        return self.HTML_TYPES
-
+    # Calls the parent class header method
     def header(self):
         return hb.header(self)
 
+    # Calls the parent class body method
     def body(self):
         return hb.body(self)
 
-    def variable(self):
-        return hb.variable(self)
+    # Calls the parent class var method
+    def var(self):
+        return hb.var(self)

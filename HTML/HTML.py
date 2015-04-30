@@ -1,7 +1,9 @@
 '''
 Class:  html_manager
 
-Purpose: The class that manages retrieving the HTML templates.  This class is the interface level that the calling program needs to invoke.  It handles loading the appropriate HTMLInitiator class.
+Public methods: __init__, get_header, get_body, get_variable
+
+ This class manages retrieving the HTML templates.  It is the interface for the calling program needs to invoke.  It handles loading the appropriate HTMLInitiator class.
 
     NOTE:  DO NOT DIRECTLY ACCESS THE CLASS VARIABLES.  ALWAYS USE THE get_ and
     set_ methods!!!!
@@ -46,23 +48,23 @@ class html_manager():
             raise e
 
     '''
-    This method will load the 3 different parts of the HTML page trying to be
-    created.  test_flag can be set to true to force a failure in testing.
+    This method will load the 3 different parts of the HTML template.  It is a test method to ensure that strings exist for each of the expected html template variables.  test_flag can be set to true to force a failure in testing.
     '''
     def get_html(self, test_flag = False):
 
         #set variable to fail test unless correctly updated
-        self.header = None
-        self.body = None
-        self.variable = None
+        header = None
+        body = None
+        var = None
 
         try:
             if test_flag == False:
-                self.header = self.my_html_initiator.header()
-                self.body = self.my_html_initiator.body()
-                self.variable = self.my_html_initiator.variable()
+                header = self.my_html_initiator.header()
+                body = self.my_html_initiator.body()
+                var = self.my_html_initiator.var()
 
-            if type(self.header) == str and type(self.body) == str and type(self.variable) == str:
+            #Test to make sure strings exist for all sections
+            if type(header) == str and type(body) == str and type(var) == str:
                 return True
             else:
                 raise TypeError('TypeError',
@@ -77,11 +79,14 @@ class html_manager():
         except Exception as e:
             raise e
 
+    # The method that calls html_initiator's header method
     def get_header(self):
-        return self.header
+        return self.my_html_initiator.header()
 
+    # The method that calls html_initiator's body method
     def get_body(self):
-        return self.body
+        return self.my_html_initiator.body()
 
+    # The method that calls html_initiator's var method
     def get_variable(self):
-        return self.variable
+        return self.my_html_initiator.var()

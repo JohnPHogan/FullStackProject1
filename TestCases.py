@@ -38,11 +38,11 @@ class test_html_base(unittest.TestCase):
 
     #Test that the variable method exists
     def test_html_base_variable(self):
-        self.my_html_base.variable()
+        self.my_html_base.var()
 
     #Test that the variable method returns a string
     def test_html_base_variable_result(self):
-        self.assertIsInstance(self.my_html_base.variable(), str)
+        self.assertIsInstance(self.my_html_base.var(), str)
 
 class test_html_initiator(unittest.TestCase):
 
@@ -57,22 +57,6 @@ class test_html_initiator(unittest.TestCase):
     #Test that __init__ can catch and throw an TypeError exception
     def test_html_initiator_exception(self):
         self.assertRaises(TypeError, self.hi, True)
-
-    #Test that get_all exists
-    def test_get_all(self):
-        self.my_html_initiator.get_all()
-
-    #Test that get_all returns a dict
-    def test_get_all(self):
-        self.assertIsInstance(self.my_html_initiator.get_all(), dict)
-
-    #Test that get_all support test_flag parameter
-    def test_get_all_test_flag(self):
-        self.my_html_initiator.get_all(False)
-
-    #Test that get_all can return None
-    def test_get_all_fail(self):
-        self.assertIsNone(self.my_html_initiator.get_all(True))
 
     #Test that the header method exists
     def test_header(self):
@@ -93,11 +77,11 @@ class test_html_initiator(unittest.TestCase):
 
     #Test that that variable method exists
     def test_variable(self):
-        self.my_html_initiator.variable()
+        self.my_html_initiator.var()
 
-    #Test that the variable method returns a string
+    #Test that the var method returns a string
     def test_html_initiator_variable_result(self):
-        self.assertIsInstance(self.my_html_initiator.variable(), str)
+        self.assertIsInstance(self.my_html_initiator.var(), str)
 
 class test_html(unittest.TestCase):
 
@@ -138,14 +122,6 @@ class Test_Standard_Data(unittest.TestCase):
     def test_init_Raises_TypeError(self):
         self.assertRaises(TypeError, self.sd, True)
 
-    #Test that get_keys exits
-    def test_get_keys(self):
-        self.my_standard_data.get_keys()
-
-    #Test that the variable method returns a list
-    def test_get_keys_result(self):
-        self.assertIsInstance(self.my_standard_data.get_keys(), list)
-
     #Test that the get_movies method exists
     def test_get_movies(self):
         self.my_standard_data.get_movies()
@@ -154,32 +130,6 @@ class Test_Standard_Data(unittest.TestCase):
     def test_get_movies_result(self):
         self.assertIsInstance(self.my_standard_data.get_movies(), list)
 
-class test_movies(unittest.TestCase):
-    from Data.Movies import movies
-    standard_keys = ['Title',
-                    'Rating',
-                    'Poster',
-                    'URL']
-
-    standard_dict = {'Title': "Test Movie",
-                    'Rating': "Rating",
-                    'Poster': "Test Poster",
-                    'URL': "Test URL"}
-
-    my_movies = movies(standard_keys)
-
-    #test to make sure an exception is caught an thrown if a list is not passed
-    def test_init_rejects_invalid_keys(self):
-
-        self.assertRaises(TypeError,self.movies,'test string')
-
-    def test_load_data_exists(self):
-        self.my_movies.load_data(self.standard_dict)
-
-    def test_load_data_throws_type_error(self):
-        self.assertRaises(TypeError,
-                        self.my_movies.load_data,
-                        'this is an error')
 
 class Test_Data_Initiator(unittest.TestCase):
     #Test that the class exists and can be instantiated
@@ -190,21 +140,17 @@ class Test_Data_Initiator(unittest.TestCase):
     def test_init_test_flag(self):
         test_data_initiator = self.di(False)
 
-    #Test that __init__ method can accept alt_flag parameter
-    def test_init_handles_type_flag(self):
-        test_data_initiator = self.di(False, False)
-
     #Test that __init__ can catch and throw a TypeError exception
     def test_init_Raises_TypeError(self):
         self.assertRaises(TypeError, self.di, True)
 
     #Test that get_data_object exists
     def test_data_get_object_exists(self):
-        self.my_data_initiator.get_data_object()
+        self.my_data_initiator.get_movies()
 
     #Test that get_data_object returns a list
     def test_data_get_data_object_results(self):
-        self.assertIsInstance(self.my_data_initiator.get_data_object(), list)
+        self.assertIsInstance(self.my_data_initiator.get_movies(), list)
 
 
 class Test_Data_Manager(unittest.TestCase):
@@ -220,37 +166,18 @@ class Test_Data_Manager(unittest.TestCase):
     def test_init_Raises_TypeError(self):
         self.assertRaises(TypeError, self.dm, True)
 
-    #Test that data_manager can accept a third argument
-    def test_init_alt(self):
-        test_data_manager = self.dm(False, False)
-
-    #Test to see if get_data_object exists
-    def test_get_data_object(self):
-        self.my_data_manager.get_data_object()
-
-    #Test to see if get_data_object accepts test_flag as a parameter
-    def test_get_data_object_flag(self):
-        self.my_data_manager.get_data_object(False)
-
-    #Test to see if get_data_object can throw a type error
-    def test_get_data_object_exception(self):
-        self.assertRaises(TypeError, self.my_data_manager.get_data_object, True)
-
-    #Test to see if build_movies exists
-    def test_build_movie_list_exists(self):
-        self.my_data_manager.build_movie_list()
-
-    #Test to see that build_movie_list returns a list
-    def check_build_movie_list_return(self):
-        self.assertIsInstance(self.my_data_manager.build_movie_list(), list)
 
     #Test to see if get_movies exists
-    def test_get_movies_exists(self):
+    def test_get_movies(self):
         self.my_data_manager.get_movies()
 
-    #Test to see that build_movie_list returns a list
-    def check_get_movies_list_return(self):
-        self.assertIsInstance(self.my_data_manager.get_movies(), list)
+    #Test to see if get_movies accepts test_flag as a parameter
+    def test_get_movies_flag(self):
+        self.my_data_manager.get_movies(False)
+
+    #Test to see if get_movies can throw a type error
+    def test_get_movies_exception(self):
+        self.assertRaises(TypeError, self.my_data_manager.get_movies, True)
 
 
 class test_serve_page(unittest.TestCase):
@@ -267,9 +194,6 @@ class test_serve_page(unittest.TestCase):
     def test_init_exception(self):
         self.assertRaises(Exception, self.sp, True)
 
-    def test_init_alternate(self):
-        test_ServerPage = self.sp(False, False)
-
     def test_get_source_html(self):
         self.my_ServePage.get_source_html()
 
@@ -279,10 +203,7 @@ class test_serve_page(unittest.TestCase):
     def test_get_source_html_exception(self):
         self.assertRaises(TypeError, self.my_ServePage.get_source_html, True)
 
-    def test_init_command_line_argument(self):
-        test_ServePage = self.sp(False, False)
-
-    #Test to see if movies method exists
+    #Test to see if get_movies method exists
     def test_movies(self):
         self.my_ServePage.get_movies()
 
@@ -299,10 +220,25 @@ class test_serve_page(unittest.TestCase):
         #self.my_ServePage.get_movies()
         self.assertIsInstance(self.my_ServePage.get_movies(), list)
 
-    #Test to see that method is available
+    #Test to see that create_movie_tiles_content method is available
     def test_build_variable_data(self):
         test = []
         self.my_ServePage.create_movie_tiles_content(test)
+
+    #Test to see that method builds variable data
+    def test_build_variable_data(self):
+
+        self.my_ServePage.create_movie_tiles_content(self.my_ServePage.get_movies())
+
+    #Test to see if open_movies_page exists
+    def test_open_movies_page_exists(self):
+        test = []
+        self.my_ServePage.open_movies_page(test)
+
+    #Test to see if open_movies_page exists.
+    # This test will open the html page
+    def test_open_movies_page_exists(self):
+        self.my_ServePage.open_movies_page(self.my_ServePage.get_movies())
 
 
 if __name__ == '__main__':

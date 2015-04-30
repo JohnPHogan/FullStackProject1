@@ -1,6 +1,18 @@
+'''
+Class html_base
+
+Public methods: __init__, header, body, var
+
+This class contains the default definitions of the html page to be rendered.  It must stay in sync with the contents of whatever form of the StandardDataOjbect class you wish to use.  If alternative versions of the page are created, they can be implemented as separate classes exposing the same methods and then accessed through the html_initiator.
+
+DO NOT ACCESS CLASS VARIABLES DIRECTLY!!  ONLY USE THE DEFINED METHODS TO GUARANTEE THAT ANY INCLUDED ERROR CHECKING OR FORMATTING OCCURS.
+'''
 
 class html_base():
 
+    '''
+    The constructor that sets the class variables for the html template.  It assumes that the content will be divided into a header, body and variable section.  The variable section will need to conform to the data object built by the data_initiator class
+    '''
     def __init__(self, test_flag = False):
 
         try:
@@ -13,7 +25,7 @@ class html_base():
                 self.main_page_head = '''
                 <head>
                     <meta charset="utf-8">
-                    <title>Fresh Tomatoes!</title>
+                    <title>Bond. James Bond!</title>
 
                     <!-- Bootstrap 3 -->
                     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
@@ -111,7 +123,7 @@ class html_base():
                       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                         <div class="container">
                           <div class="navbar-header">
-                            <a class="navbar-brand" href="#">Fresh Tomatoes Movie Trailers</a>
+                            <a class="navbar-brand" href="#">James Bond Movie Trailers</a>
                           </div>
                         </div>
                       </div>
@@ -134,11 +146,16 @@ class html_base():
         except Exception as e:
             raise e
 
+    # The public method to return the html template header information
     def header(self):
         return self.main_page_head
 
+    # The public method to return the html template body information
     def body(self):
         return self.main_page_content
 
-    def variable(self):
+    '''
+    The public method to return the html template variable information that will be populated by the data object.
+    '''
+    def var(self):
         return self.movie_tile_content
